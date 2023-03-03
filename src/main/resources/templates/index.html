@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Practica</title>
+        <meta charset="UTF-8">
+    </head> 
+    <body>
+           <h2>Lista de Estados</h2>
+        <br>
+        <hr>
+        <a th:href="@{/estado/nuevo/}">Nuevo estado</a>
+       
+        <div th:if="${estados != null and !estados.empty}">
+            <table border="0">
+                <thead>
+                    <tr>
+                        <th>Nombre_estado</th>
+                        <th>Capital</th>
+                        <th>Poblacion</th>
+                        <th>Moneda</th>
+                        
+                    </tr>
+                </thead>
+                <tr>
+                <tbody>
+                    <tr th:each="estado: ${estados}">
+                        <td>[[${estado.nombre_estado}]]</td>
+                        <td>[[${estado.capital}]]</td>
+                        <td>[[${estado.poblacion}]]</td>
+                        <td>[[${estado.moneda}]]</td>
+                        <td>   <a th:href="@{/estado/eliminar/} + ${estado.idEstado}">Eliminar</a></td>
+                        <td>   <a th:href="@{/estado/actualizar/} + ${estado.idEstado}">Actualizar</a>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${estados == null or estados.empty}">
+            <h3>No hay estados que mostrar por el momento.</h3>
+        </div>
+    </body>
+</html>
